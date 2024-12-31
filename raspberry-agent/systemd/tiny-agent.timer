@@ -1,10 +1,10 @@
 [Unit]
-Description=Run tiny_agent.service on timer
+Description=Run tiny-agent.service on timer
 
 [Timer]
 OnBootSec=20s
 OnUnitActiveSec=9s
-Unit=tiny_agent.service
+Unit=tiny-agent.service
 
 [Install]
 WantedBy=timers.target
