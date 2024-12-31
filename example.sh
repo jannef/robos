@@ -5,4 +5,4 @@ log() {
 }
 
 # Dummy change to trigger changes
-log "Ran example script"
+log "Ran example"
