@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# install-otel-collector.sh
+# otel-collector/install.sh
 #
 # Installs OpenTelemetry Collector Contrib for ARM64 (version 0.116.0),
 # sets up a minimal config with journald->Azure Monitor,
