@@ -12,19 +12,17 @@ SCRIPT_TO_RUN="example.sh"
 
 log "Start"
 
-# Critical section
 if [ -d "$REPO_DIR/.git" ]; then
     # Directory exists and is a git repo; check for updates
     log "Checking for updates on '$REPO_URL:$BRANCH'"
-    git -C "$REPO_DIR" fetch origin
+    git -C "$REPO_DIR" fetch origin "$BRANCH" --quiet
     
     # Compare local HEAD to remote
     LOCAL=$(git -C "$REPO_DIR" rev-parse HEAD)
-    REMOTE=$(git -C "$REPO_DIR" rev-parse "origin/$BRANCH")
+    REMOTE=$(git -C "$REPO_DIR" rev-parse origin/"$BRANCH")
     
     if [ "$LOCAL" != "$REMOTE" ]; then
-        git -C "$REPO_DIR" checkout "$BRANCH"    
-        git -C "$REPO_DIR" pull origin "$BRANCH"
+        git -C "$REPO_DIR" reset --hard origin/"$BRANCH" --quiet    
         
         # Run the specified script
         log "Running '$SCRIPT_TO_RUN'"
