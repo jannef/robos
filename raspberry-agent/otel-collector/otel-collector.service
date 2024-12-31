@@ -1,0 +1,32 @@
+[Unit]
+Description=OpenTelemetry Collector Contrib
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/otelcol-contrib --config /etc/otel-collector/config.yaml
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+Create/adjust your config at /etc/otel-collector/config.yaml. For example:
+yaml
+Copy code
+receivers:
+  journald:
+    directory: /run/log/journal
+    # Optional: start_at: end
+    # Optional: units: ["myapp.service"]
+
+processors:
+  batch:
+
+exporters:
+  azuremonitor:
+    connection_string: "<YOUR_CONNECTION_STRING>"
+
+service:
+  pipelines:
+    logs:
+      receivers: [journald]
+      processors: [batch]
+      exporters: [azuremonitor]
