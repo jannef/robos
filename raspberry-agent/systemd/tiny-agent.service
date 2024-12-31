@@ -1,0 +1,8 @@
+[Unit]
+Description=Tiny CI/CD Gitops Agent updates poller
+After=network.target
+
+[Service]
+Type=oneshot
+User=janne
+ExecStart=/usr/local/bin/robos/tiny_agent.sh
