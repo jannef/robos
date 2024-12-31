@@ -22,7 +22,8 @@ if [ -d "$REPO_DIR/.git" ]; then
     REMOTE=$(git -C "$REPO_DIR" rev-parse origin/"$BRANCH")
     
     if [ "$LOCAL" != "$REMOTE" ]; then
-        git -C "$REPO_DIR" reset --hard origin/"$BRANCH" --quiet    
+        git -C "$REPO_DIR" reset --hard origin/"$BRANCH" --quiet 
+        chmod +x "$REPO_DIR"/**/*.sh
         
         # Run the specified script
         log "Running '$SCRIPT_TO_RUN'"
