@@ -10,8 +10,6 @@ REPO_DIR="/usr/local/bin/robos"
 BRANCH="main"
 SCRIPT_TO_RUN="example.sh"
 
-log "Start"
-
 if [ -d "$REPO_DIR/.git" ]; then
     # Directory exists and is a git repo; check for updates
     log "Checking for updates on '$REPO_URL:$BRANCH'"
@@ -39,6 +37,3 @@ else
     git -C "$REPO_DIR" checkout "$BRANCH"
     bash "$REPO_DIR/$SCRIPT_TO_RUN"
 fi
-
-# Cleanup
-log "Done"
